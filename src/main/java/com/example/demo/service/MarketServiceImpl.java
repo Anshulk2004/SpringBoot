@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.MarketEntity;
 import com.example.demo.model.Market;
 import com.example.demo.repository.MarketJPARepository;
-import com.example.demo.repository.MarketRepoImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,5 +45,22 @@ public class MarketServiceImpl implements MarketService {
         entity.setPrice(saveEquity.price);
         var savedEntity = repository.save(entity);
         return new Market(savedEntity.getId(), savedEntity.getEquity(), savedEntity.getPrice());
+    }
+
+    @Override
+    public Market updateEquity(long id, Market updateEquity) {
+        MarketEntity me =  repository.findById(id).orElseThrow();
+        me.setEquity(updateEquity.equity);
+        me.setPrice(updateEquity.price);
+        MarketEntity updatedEntity = repository.save(me);
+        return new Market(updatedEntity.getId(), updatedEntity.getEquity(), updatedEntity.getPrice());
+    }
+
+    @Override
+    public void deleteEquityById(long id) {
+        if(!repository.existsById(id)){
+            throw new RuntimeException("Equity with id "+id+" not found");
+        }
+        repository.deleteById(id);
     }
 }

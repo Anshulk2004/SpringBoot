@@ -41,4 +41,13 @@ public class MarketRestController {
         return marketService.saveEquity(m);
 
     }
+    @PutMapping("/equities/{id}")
+    public Market updateEquity(@PathVariable long id, @RequestBody Market m){
+        return marketService.updateEquity(id, m);
+    }
+
+    @DeleteMapping("/equities/{id}")
+    public void deleteEquityById(@PathVariable long id){
+        marketService.deleteEquityById(id);
+    }
 }
