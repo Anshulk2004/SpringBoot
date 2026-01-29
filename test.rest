@@ -1,0 +1,34 @@
+###
+GET localhost:8080/market/1.0/equities
+
+###
+GET localhost:8080/market/1.0/welcome
+
+###
+GET http://localhost:8080/market/1.0/equities/1
+
+###
+POST http://localhost:8080/market/1.0/equities
+Content-Type: application/json
+
+{
+  "id": 5,
+  "equity": "BNY",
+  "price": 900
+}
+
+###
+PUT http://localhost:8080/market/1.0/equities/1
+Content-Type: application/json
+
+{
+  "id": 2,
+  "equity": "BNY",
+  "price": 900
+}
+
+###
+GET http://localhost:8080/market/1.0/re/equities/4
+
+###
+POST http://localhost:8080/market/1.0/equities
